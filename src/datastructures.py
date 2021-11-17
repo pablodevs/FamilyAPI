@@ -32,16 +32,16 @@ class FamilyStructure:
         self._members.append(new_member)
 
     def delete_member(self, id):
-        for member, idx in enumerated(self._members):
-            # if member["id"] == id:
-            print(member, idx)
-                # return member
+        for idx, member in enumerate(self._members):
+            if member["id"] == id:
+                deleted_member = self._members.pop(idx)
+                return "Member: {}, with id {} was deleted".format(deleted_member["first_name"], deleted_member["id"])
         return "Member not found"
 
     def get_member(self, id):
         for member in self._members:
             if member["id"] == id:
-                return member
+                return {"id": member["id"], "first_name": member["first_name"], "age": member["age"], "lucky_numbers": member["lucky_numbers"]}
         return "Member not found"
 
     # this method is done, it returns a list with all the family members
